@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Contact = () => {
+  const { user, isAuthenticated } = useAuth0();
   const Wrapper = styled.section`
     padding: 9rem 0 5rem 0;
     text-align: center;
@@ -41,6 +43,7 @@ const Contact = () => {
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13995.797842205995!2d77.16001955!3d28.72105635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d0190df0c3ce1%3A0x6e7a5d69ca0eece8!2sJahangirpuri!5e0!3m2!1sen!2sin!4v1676739884044!5m2!1sen!2sin" 
     width="100%"
     height="400" 
+    title="myMap"
     style={{border:0}} 
     allowFullscreen="" 
     loading="lazy" 
@@ -54,6 +57,7 @@ const Contact = () => {
               type="text"
               placeholder="username"
               name="username"
+              value={isAuthenticated ? user.name : ""}
               required
               autoComplete="off"
             />
@@ -63,6 +67,7 @@ const Contact = () => {
           name="Email"
           placeholder="Email"
           autoComplete="off"
+          value={isAuthenticated ? user.email : ""}
           required
         />
 
